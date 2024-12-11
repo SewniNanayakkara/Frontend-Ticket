@@ -16,7 +16,7 @@ function ConfigurationForm() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.post("http://localhost:3000/config", config)
+			.post("http://localhost:3000/system/config", config)
 			.then((response) => {
 				alert("Configuration updated.");
 			})
@@ -44,7 +44,7 @@ function ConfigurationForm() {
 				Max Ticket Capacity:
 				<input type="number" name="maxTicketCapacity" value={config.maxTicketCapacity} onChange={handleChange} />
 			</label>
-			<button type="submit">Update Configuration</button>
+			<button type="submit">Update</button>
 		</form>
 	);
 }

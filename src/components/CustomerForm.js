@@ -8,11 +8,11 @@ function CustomerForm({ onCustomerAdded }) {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await axios.post("http://localhost:3000/customers", { priority });
+			const response = await axios.post("http://localhost:3000/customer/add", { priority });
 			onCustomerAdded(response.data);
-			setPriority(0);
+			setPriority(priority);
 		} catch (error) {
-			console.error("Error adding customer:", error);
+			console.error("Customer Add Error:", error);
 		}
 	};
 
@@ -20,10 +20,10 @@ function CustomerForm({ onCustomerAdded }) {
 		<form onSubmit={handleSubmit}>
 			<h3>Add Customer</h3>
 			<div>
-				<label>Priority Level:</label>
+				<label>Priority :</label>
 				<input type="number" value={priority} onChange={(e) => setPriority(Number(e.target.value))} required min="0" />
 			</div>
-			<button type="submit">Add Customer</button>
+			<button type="submit">Add New Customer</button>
 		</form>
 	);
 }

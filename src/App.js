@@ -1,26 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ConfigurationForm from "./components/ConfigurationForm";
 import ControlPanel from "./components/ControlPanel";
 import TicketDisplay from "./components/TicketDisplay";
 import CustomerForm from "./components/CustomerForm";
 import CustomerList from "./components/CustomerList";
+import axios from "axios";
 function App() {
 	const [systemStatus, setSystemStatus] = useState("stopped");
   const [customers, setCustomers] = useState([]);
-    const handleCustomerAdded = (customer) => {
+    useEffect(() => {
+			axios
+				.get("http://localhost:3000/customer/all")
+				.then((response) => {
+					setCustomers(response.data);
+				})
+				.catch((error) => {
+					console.error("Error fetching customers:", error);
+				});
+		}, []);
+
+    const handleCustomerAdd = (customer) => {
 			setCustomers([...customers, customer]);
 		};
 
-		const handleCustomerRemoved = (customerId) => {
+		const handleCustomerRemove = (customerId) => {
 			setCustomers(customers.filter((customer) => customer.id !== customerId));
 		};
 	return (
 		<div>
-			<h1>Real-Time Event Ticketing System</h1>
+			<h1>Ticket Tracking System</h1>
 			<ConfigurationForm />
 			<ControlPanel systemStatus={systemStatus} setSystemStatus={setSystemStatus} />
-			<CustomerForm onCustomerAdded={handleCustomerAdded} />
-			<CustomerList customers={customers} onCustomerRemoved={handleCustomerRemoved} />
+			<CustomerForm onCustomerAdd={handleCustomerAdd} />
+			<CustomerList customers={customers} onCustomerRemove={handleCustomerRemove} />
 			<TicketDisplay />
 		</div>
 	);

@@ -4,10 +4,10 @@ import axios from "axios";
 function CustomerList({ customers, onCustomerRemoved }) {
 	const handleDelete = async (customerId) => {
 		try {
-			await axios.delete(`http://localhost:3000/customers/${customerId}`);
+			await axios.delete(`http://localhost:3000/customer/${customerId}`);
 			onCustomerRemoved(customerId);
 		} catch (error) {
-			console.error("Error deleting customer:", error);
+			console.error("Customer Delete error:", error);
 		}
 	};
 
