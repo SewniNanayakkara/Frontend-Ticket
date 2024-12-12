@@ -59,28 +59,10 @@ REACT_APP_BACKEND_URL=&lt;your_backend_api_endpoint&gt;</code></pre>
     <h3>Running the Application</h3>
     <pre><code>npm start</code></pre>
     <p>Open your browser and navigate to <a href="http://localhost:3000">http://localhost:3000</a> to view the application.</p>
-    <h2>File Structure</h2>
-    <pre><code>frontend-gui/
-├── public/
-│   └── index.html           # Main HTML file
-├── src/
-│   ├── components/          # Reusable React components
-│   │   ├── TicketStatus.js  # Displays ticket availability
-│   │   ├── ControlPanel.js  # Provides system control buttons
-│   │   └── ConfigurationForm.js  # Input fields for system settings
-│   ├── hooks/               # Custom hooks for state management
-│   ├── services/            # Backend communication logic
-│   │   └── api.js           # API interaction functions
-│   ├── App.js               # Main application file
-│   └── index.js             # Entry point for the React application
-├── .env                     # Environment variables
-├── package.json             # Project dependencies and scripts
-└── README.md                # Documentation</code></pre>
     <h2>Backend Communication</h2>
     <ul>
         <li><strong>WebSocket Implementation:</strong>
             <pre><code>const socket = new WebSocket(process.env.REACT_APP_BACKEND_URL);
-
 socket.onmessage = (event) => {
   const data = JSON.parse(event.data);
   // Update state or notify components with the new data
