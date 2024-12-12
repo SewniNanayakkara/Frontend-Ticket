@@ -1,13 +1,17 @@
 // CustomerForm.js
+// Customer form component
 import React, { useState } from "react";
 import axios from "axios";
 
 function CustomerForm({ onCustomerAdded }) {
+	// Initialize priority state
 	const [priority, setPriority] = useState(0);
 
+	// Handle form submission
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
+			// Add customer to server
 			const response = await axios.post("http://localhost:3000/customer/add", { priority });
 			onCustomerAdded(response.data);
 			setPriority(priority);

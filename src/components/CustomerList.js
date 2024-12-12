@@ -1,10 +1,14 @@
+// Customer list component
 import React from "react";
 import axios from "axios";
 
 function CustomerList({ customers, onCustomerRemoved }) {
+	// Handle customer deletion
 	const handleDelete = async (customerId) => {
 		try {
+			// Delete customer from server
 			await axios.delete(`http://localhost:3000/customer/${customerId}`);
+			// Notify parent component of deleted customer
 			onCustomerRemoved(customerId);
 		} catch (error) {
 			console.error("Customer Delete error:", error);

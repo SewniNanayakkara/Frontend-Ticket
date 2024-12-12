@@ -1,8 +1,10 @@
 // src/components/ControlPanel.js
+// Control panel component
 import React from "react";
 import axios from "axios";
 
 function ControlPanel({ systemStatus, setSystemStatus }) {
+	// Start system
 	const startSystem = () => {
 		axios
 			.post("http://localhost:3000/system/start")
@@ -14,6 +16,7 @@ function ControlPanel({ systemStatus, setSystemStatus }) {
 			});
 	};
 
+	// Stop system
 	const stopSystem = () => {
 		axios
 			.post("http://localhost:3000/system/stop")

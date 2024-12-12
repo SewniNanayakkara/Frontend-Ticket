@@ -1,10 +1,14 @@
+// Import necessary dependencies for React application
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './index.css'; // Import global CSS styles
+import App from './App'; // Import main App component
+import reportWebVitals from './reportWebVitals'; // Import web vitals reporting function
 
+// Create root element for React application
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// Render App component within React Strict Mode
 root.render(
   <React.StrictMode>
     <App />
