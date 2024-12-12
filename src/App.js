@@ -8,31 +8,36 @@ import axios from "axios";
 function App() {
 	const [systemStatus, setSystemStatus] = useState("stopped");
   const [customers, setCustomers] = useState([]);
-    useEffect(() => {
-			axios
-				.get("http://localhost:3000/customer/all")
-				.then((response) => {
-					setCustomers(response.data);
-				})
-				.catch((error) => {
-					console.error("Error fetching customers:", error);
-				});
-		}, []);
+  const customerList = () => {
+		axios
+			.get("http://localhost:3000/customer/all")
+			.then((response) => {
+				setCustomers(response.data);
+			})
+			.catch((error) => {
+				console.error("Error fetching customers: ", error);
+			});
+	};
+
+	useEffect(() => {
+		customerList();
+	}, []);
 
     const handleCustomerAdd = (customer) => {
 			setCustomers([...customers, customer]);
 		};
 
 		const handleCustomerRemove = (customerId) => {
-			setCustomers(customers.filter((customer) => customer.id !== customerId));
+			  setCustomers((prev) => prev.filter((c) => c.id !== customerId));
+		
 		};
 	return (
 		<div>
 			<h1>Ticket Tracking System</h1>
 			<ConfigurationForm />
 			<ControlPanel systemStatus={systemStatus} setSystemStatus={setSystemStatus} />
-			<CustomerForm onCustomerAdd={handleCustomerAdd} />
-			<CustomerList customers={customers} onCustomerRemove={handleCustomerRemove} />
+			<CustomerForm onCustomerAdded={handleCustomerAdd} />
+			<CustomerList customers={customers} onCustomerRemoved={handleCustomerRemove} />
 			<TicketDisplay />
 		</div>
 	);
