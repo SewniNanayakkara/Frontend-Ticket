@@ -42,27 +42,5 @@
             </div>
         </div>
     </div>
-    <script>
-        function startSystem() {
-            alert('System started!');
-        }
-        function stopSystem() {
-            alert('System stopped!');
-        }
-        function resetSystem() {
-            alert('System reset!');
-        }
-        function submitConfig(event) {
-            event.preventDefault();
-            const param1 = document.getElementById('param1').value;
-            const param2 = document.getElementById('param2').value;
-            if (!param1 || !param2) {
-                document.getElementById('error-display').innerText = 'Please fill in all parameters.';
-            } else {
-                document.getElementById('error-display').innerText = 'Configuration submitted successfully.';
-                console.log(`Param1: ${param1}, Param2: ${param2}`);
-            }
-        }
-    </script>
 </body>
 </html>
